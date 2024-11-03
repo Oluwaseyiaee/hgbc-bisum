@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Form</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            /* Use flexbox for alignment */
+            justify-content: center;
+            /* Center content horizontally */
+            align-items: center;
+            /* Center content vertically */
+            height: 100vh;
+            /* Full viewport height */
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/slide/Showcase-1.jpg');
+            /* Gradient overlay and background image */
+            background-size: cover;
+            /* Cover the entire area */
+            background-position: center;
+            /* Center the background image */
+        }
+
+
+        .container {
+            display: flex;
+            max-width: 800px;
+            width: 100%;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-section {
+            background-color: #2d82b7;
+            color: white;
+            padding: 40px;
+            width: 50%;
+        }
+
+        .info-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .info-section p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+
+        .account-btn {
+            background-color: white;
+            color: #2d82b7;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+
+        .form-section {
+            padding: 40px;
+            width: 50%;
+        }
+
+        .form-section h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            color: #2d82b7;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .register-btn {
+            width: 100%;
+            background-color: #2d82b7;
+            color: white;
+            border: none;
+            padding: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .register-btn:hover {
+            background-color: #246a8c;
+        }
+    </style>
+
+
+
+    <div class="container">
+        <div class="info-section">
+            <h2>Registration Guide</h2>
+            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea veniam doloribus, at a maxime consequatur?
+            </p>
+            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea veniam doloribus, at a maxime consequatur?
+            </p>
+
+        </div>
+        <div class="form-section">
+            <h2>REGISTER FORM</h2>
+            <form>
+                <div class="form-group">
+                    <input type="text" placeholder="First Name" required>
+
+                </div>
+                <div class="form-group">
+
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" placeholder="Password" required>
+                    <input type="password" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" required> I agree to the <a href="#">Terms and Conditions</a>
+                </div>
+                <button type="submit" class="register-btn">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
