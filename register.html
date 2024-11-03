@@ -5,11 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Form</title>
-    <link rel="stylesheet" href="style.css">
+    <!-- CSS -->
+    <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome CSS (via CDN) -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/magnific-popup.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+
 </head>
 
 <body>
-
     <style>
         * {
             box-sizing: border-box;
@@ -20,68 +34,67 @@
 
         body {
             display: flex;
-            /* Use flexbox for alignment */
             justify-content: center;
-            /* Center content horizontally */
             align-items: center;
-            /* Center content vertically */
-            height: 100vh;
-            /* Full viewport height */
+            padding-top: 20px;
+            /* Add some padding at the top */
+            min-height: 100vh;
+            /* Changed from height to min-height */
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/img/slide/Showcase-1.jpg');
-            /* Gradient overlay and background image */
             background-size: cover;
-            /* Cover the entire area */
             background-position: center;
-            /* Center the background image */
         }
 
-
-        .container {
+        .form_container {
             display: flex;
-            max-width: 800px;
+            max-width: 80%;
             width: 100%;
             background-color: white;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            flex-direction: row;
+            /* Default to row */
         }
 
-        .info-section {
+        .guide-section {
             background-color: #2d82b7;
             color: white;
             padding: 40px;
-            width: 50%;
-        }
-
-        .info-section h2 {
-            font-size: 1.5em;
-            margin-bottom: 20px;
-        }
-
-        .info-section p {
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .account-btn {
-            background-color: white;
-            color: #2d82b7;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-weight: bold;
-            border-radius: 5px;
+            width: 40%;
+            /* Set width for larger screens */
+            flex-grow: 1;
+            /* Allow to grow to fill space */
+            display: flex;
+            flex-direction: column;
+            /* Stack contents vertically */
         }
 
         .form-section {
             padding: 40px;
-            width: 50%;
+            width: 60%;
+            /* Set width for larger screens */
+            flex-grow: 1;
+            /* Allow to grow to fill space */
         }
 
+        .guide-section h2,
         .form-section h2 {
             font-size: 1.5em;
             margin-bottom: 20px;
-            color: #2d82b7;
+            color: white;
+        }
+
+        .guide-section p {
+            margin-bottom: 15px;
+            line-height: 1.5;
+            color: white;
+        }
+
+        .section-divider {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding-bottom: 2rem;
+            margin-bottom: 2rem;
         }
 
         .form-group {
@@ -92,7 +105,8 @@
 
         .form-group input[type="text"],
         .form-group input[type="email"],
-        .form-group input[type="password"] {
+        .form-group input[type="password"],
+        .form-group select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -117,44 +131,179 @@
         .register-btn:hover {
             background-color: #246a8c;
         }
+
+        /* Media Queries for Responsiveness */
+        @media (max-width: 768px) {
+            .form_container {
+                flex-direction: column;
+                /* Stack elements vertically on mobile */
+            }
+
+            .guide-section,
+            .form-section {
+                width: 100%;
+                /* Full width on mobile */
+            }
+
+            .form-group {
+                flex-direction: column;
+                /* Stack input fields vertically */
+            }
+        }
     </style>
 
+    <div class="form_container d-md-flex">
+        <div class="guide-section col-md-5">
+            <h4 class="text-center text-white">Account Details</h4>
+            <div class="section-divider mb-4">
+                <p class="text-white">Make your payment to this bank account to proceed with registration:</p>
+                <p class="text-white">Bank: Polaris Bank</p>
+                <p class="text-white">Bank Name: Higher Ground Baptist Church</p>
+                <p class="text-white">Account No: 1140056637</p>
+                <p class="text-white">Description: Your Name - BISUM 2024</p>
+            </div>
 
-
-    <div class="container">
-        <div class="info-section">
-            <h2>Registration Guide</h2>
-            <p>1. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea veniam doloribus, at a maxime consequatur?
-            </p>
-            <p>2. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea veniam doloribus, at a maxime consequatur?
-            </p>
-
+            <h4 class="text-center text-white">Registration Guide</h4>
+            <p class="text-white">1. Make your payment to the above bank account with the specified description.</p>
+            <p class="text-white">2. Fill in the information in the form and upload your receipt.</p>
         </div>
-        <div class="form-section">
-            <h2>REGISTER FORM</h2>
+        <div class="form-section col-md-7">
+            <h4 class="text-primary">REGISTER FORM</h4>
             <form>
-                <div class="form-group">
-                    <input type="text" placeholder="First Name" required>
+                <!-- Name Fields -->
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="First Name" required
+                            aria-label="First Name">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="Last Name" required aria-label="Last Name">
+                    </div>
+                </div>
 
+                <!-- Gender and Age Range -->
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <select id="gender" class="form-select" required aria-label="Gender">
+                            <option selected disabled>Gender</option>
+                            <option>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <select id="age-range" class="form-select" required aria-label="Age Range">
+                            <option selected disabled>Age Range</option>
+                            <option>11-20</option>
+                            <option>21-30</option>
+                            <option>31-40</option>
+                            <option>41-50</option>
+                            <option>51-60</option>
+                            <option>61-70</option>
+                            <option>71-80</option>
+                            <option>81-90</option>
+                            <option>91 and Above</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="form-group">
 
-                    <input type="text" placeholder="Last Name" required>
+                <!-- Email and Phone Number -->
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="email" class="form-control" placeholder="Email" required aria-label="Email">
+                    </div>
+                    <div class="col">
+                        <input type="tel" class="form-control" placeholder="Phone Number" required
+                            aria-label="Phone Number">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="email" placeholder="Your Email" required>
+
+                <!-- City and State -->
+                <div class="row g-3 mb-3">
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="City" required aria-label="City">
+                    </div>
+                    <div class="col">
+                        <input type="text" class="form-control" placeholder="State" required aria-label="State">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" required>
-                    <input type="password" placeholder="Confirm Password" required>
+
+                <!-- Occupation -->
+                <div class="mb-3">
+                    <select id="occupation" class="form-select" required aria-label="Occupation">
+                        <option selected disabled>Are you a Student or Working Class?</option>
+                        <option>Student</option>
+                        <option>Working Class</option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <input type="checkbox" required> I agree to the <a href="#">Terms and Conditions</a>
+
+                <!-- Mode of Attendance -->
+                <div class="mb-3">
+                    <select id="attendance" class="form-select" required aria-label="Attendance">
+                        <option selected disabled>How are you Attending?</option>
+                        <option>On-site</option>
+                        <option>Online</option>
+                    </select>
                 </div>
+
+                <!-- Source of Information -->
+                <div class="mb-3">
+                    <select id="source-info" class="form-select" required aria-label="Source of Information">
+                        <option selected disabled>How did you learn about the program?</option>
+                        <option>Church</option>
+                        <option>Social Media</option>
+                        <option>Flyer or Banner</option>
+                        <option>Recommendation from a friend</option>
+                        <option>Other</option>
+                    </select>
+                    <input type="text" class="form-control mt-2" id="other-source" placeholder="Please specify"
+                        style="display:none;">
+                </div>
+
+                <!-- File Upload -->
+                <div class="mb-3">
+                    <label for="file-upload" class="form-label">Upload your payment receipt</label>
+                    <input type="file" class="form-control" id="file-upload" required>
+                </div>
+
                 <button type="submit" class="register-btn">Register</button>
             </form>
         </div>
     </div>
+
+    <script>
+        const sourceSelect = document.getElementById("source-info");
+        const otherSourceInput = document.getElementById("other-source");
+
+        sourceSelect.addEventListener("change", function () {
+            if (this.value === "Other") {
+                otherSourceInput.style.display = "block";
+            } else {
+                otherSourceInput.style.display = "none";
+                otherSourceInput.value = ""; // Clear the input
+            }
+        });
+    </script>
+
+
+
+
+    <!-- JS -->
+    <!-- jQuery Library -->
+    <script src="assets/js/jquery.min.js"></script>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="assets/js/bootstrap.min.js"></script>
+
+    <!-- jQuery Plugins -->
+    <script src="assets/js/jquery.sticky.js"></script>
+    <script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+    <!-- Plugin Options and Custom Scripts -->
+    <script src="assets/js/magnific-popup-options.js"></script>
+    <script src="assets/js/click-scroll.js"></script>
+    <script src="assets/js/custom.js"></script>
+
 </body>
 
 </html>
