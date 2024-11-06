@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/BISUM logo.png" type="image/x-icon" />
+    <title>Bisum | Registration Table</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="stylesheets/table.css" />
+</head>
+<body>
+  <div class="">
+    <h1>Registration Table</h1>
+  </div>
+  <table>
+    <thead>
+        <tr>
+            <th>S/N</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Mobile Number</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Occupation</th>
+            <th>Attendance</th>
+            <th>Learnings</th>
+            <th>Others</th>
+            <th>Email</th>
+            <th>Receipt</th>
+        </tr>
+    </thead>
+    <tbody class="table-hover">
+        <%if (photizoUser && photizoUser.length > 0) {%>
+            <% photizoUser.forEach((user, index) => { %>
+              <tr>
+                <td data-column="Serial No"><%= user.serialNo %></td>
+                <td data-column="Name"><%= user.lastName %> <%= user.firstName %></td>
+                <td data-column="Gender"><%= user.gender %></td>
+                <td data-column="Age"><%= user.age %></td>
+                <td data-column="Mobile Number"><%= user.mobileNumber %></td>
+                <td data-column="City"><%= user.city %></td>
+                <td data-column="State"><%= user.state %></td>
+                <td data-column="Occupation"><%= user.occupation %></td>
+                <td data-column="Attendance"><%= user.attendance %></td>
+                <td data-column="Learnings"><%= user.learnings %> </td>
+                <td data-column="Others"><%= user.otherLearnings %> </td>
+                <td data-column="Email"><%= user.email %></td>
+                <td data-column="Receipt"><img width="100" height="100" src="<%= user.photo %>" alt="..."></td>
+              </tr>
+            <% }) %>
+          <% } else { %>
+            <% } %>
+          
+    </tbody>
+  </table>
+</body>
+</html>
