@@ -11,7 +11,7 @@ const cookieParser = require("cookie-parser");
 const flash = require("connect-flash");
 const xssFilters = require("xss-filters");
 const compression = require("compression");
-const globalErrorController = require("./controller/errorController");
+const MongoStore = require('connect-mongo');
 
 // Initialize app
 const app = express();
@@ -21,12 +21,20 @@ app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
+const conn = process.env.NODE_ENV === 'development' ? process.env.LOCAL_CONN : process.env.GLOBAL_CONN;
 // Set up session with a secret and options
 app.use(require("express-session")({
   secret: 'n0bFEermYgBlOs23Njk/y98W6A/T2PdRsz+MNFj3DpVVKcpF7tTyHVgnFfKbA8uV31YJDRoknyIhGwTp3J/pjA==',
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: MongoStore.create({ 
+    mongoUrl: conn, // Use the same MongoDB connection string
+    collectionName: 'sessions' // You can customize the collection name
+}),
+cookie: {
+    maxAge: 1000 * 60 * 60 * 12, // Session expiration (1 day here)
+    secure: process.env.NODE_ENV === 'production' // Use secure cookies in production
+}
 }));
 
 // Flash messages setup
@@ -107,9 +115,9 @@ app.use(morgan("dev"));
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "stylesheets")));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/stylesheets', express.static(path.join(__dirname, 'stylesheets')));
 app.use('/bisum/assets', express.static(path.join(__dirname, 'assets')));
-app.use('/bisum/stylesheets', express.static(path.join(__dirname, 'stylesheets')));
+app.use('/bisum/admin/UrO89GZnBXTuVToc/tomS6CdYNFXuIJhXCKdoOCbYSA=/table/:admin/assets', express.static(path.join(__dirname, 'assets')));
+
 // View engine setup
 app.set("view engine", "ejs");
 app.set("trust proxy", 1);

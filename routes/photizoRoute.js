@@ -2,30 +2,39 @@ const express=require("express"),
       multer=require("multer"),
       Photizo=require("../model/photizo"),
       sendMail=require("../utils/mail")
-const storage=multer.memoryStorage()
+      const memoryStorage = multer.memoryStorage();
 const upload = multer({
-storage: storage,
-limits: { fileSize: 15 * 1024 * 1024 }
+    storage: memoryStorage,
+    limits: { fileSize: 1 * 1024 * 1024 }, // 15MB limit, adjust as necessary
+    fileFilter: (req, file, cb) => {
+        // Accept images only
+        if (!file.mimetype.startsWith('image/')) {
+            req.flash('error', 'Please upload an image file.');
+            return cb(null, false, new Error('Only images are allowed'));
+        }
+        cb(null, true);
+    }
 });
 
 const router = express.Router();
-router.route("/").get((req,res,next)=>{
+router.route("/").get((_,res)=>{
   res.render('index',{});
 })
-router.route("/register").get((req,res,next)=>{
+router.route("/register").get((_,res)=>{
     res.render("form",{})
 })
-router.route("/admin/UrO89GZnBXTuVToc/tomS6CdYNFXuIJhXCKdoOCbYSA=/table/:admin").get(async(req,res,next)=>{
+router.route("/admin/UrO89GZnBXTuVToc/tomS6CdYNFXuIJhXCKdoOCbYSA=/table/:admin").get(async(_,res)=>{
     const photizoUser= await Photizo.find();
     res.render("table",{photizoUser})
 })
-router.route("/register").post(upload.single('file'),async(req,res,next)=>{
+router.route("/register").post(upload.single('file'),async(req,res)=>{
+    console.log(req.body)
     if(!req.file){
      req.flash('error','Please upload your receipt image.');
      return res.status(400).redirect('/bisum/register');
     } 
-    if (req.file.size > 460800) {//for acceptance of file up to 15kb only unless flag error
-        req.flash('error', 'Image size exceeds 450kb limit.');
+    if (req.file.size > 1048576) {
+        req.flash('error', 'Image size exceeds 1MB limit.');
         return res.status(400).redirect('/bisum/register');
     }
     try{
@@ -52,7 +61,7 @@ router.route("/register").post(upload.single('file'),async(req,res,next)=>{
                         link: `${req.protocol}://${req.hostname}/`,
                         subject: `You have successfully updated your details.`
                     });  
-                    req.flash('success',`${updatedUser.lastName} ${updatedUser.firstName} has successfully updated his/her photizo 2024 details.`);
+                    req.flash('success',`${updatedUser.lastName} ${updatedUser.firstName} has successfully updated his/her Bisum 2024 details.`);
                     return res.redirect('/bisum');
             }
         }else{
@@ -61,7 +70,7 @@ router.route("/register").post(upload.single('file'),async(req,res,next)=>{
           const mail = {
                 body: {
                     greeting: `Hello,${photizoUser.lastName} ${photizoUser.firstName}`,
-                    intro: `Welcome to Photizo 2024!\n\nThank you for joining us. We're excited to have you on board\n\nYour serial number is ${photizoUser.serialNo}`,
+                    intro: `Welcome to Bisum 2024!\n\nThank you for joining us. We're excited to have you on board\n\nYour serial number is ${photizoUser.serialNo}`,
                     outro: 'If you have any questions or need assistance, feel free to reach out to us/mail this email.'
                 }
             };
