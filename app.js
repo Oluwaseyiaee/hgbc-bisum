@@ -111,7 +111,9 @@ app.use(compression({
 }));
 
 // Logging and static files
-app.use(morgan("dev"));
+if(process.env.NODE_ENV === 'development') {
+  app.use(morgan("dev"));
+}
 app.use(express.static(path.join(__dirname, "assets")));
 app.use(express.static(path.join(__dirname, "stylesheets")));
 app.use('/assets', express.static(path.join(__dirname, 'assets')));
