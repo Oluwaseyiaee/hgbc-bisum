@@ -100,10 +100,23 @@ router.route("/register").post(upload.single('file'),async(req,res)=>{
             return res.status(400).redirect('/bisum/register');
     
         } else if (err.name === 'ValidationError') {
-            msg = `Validation error: ${err.message.replace('Validation failed:', '').trim()}`;
+            const fieldErrors = Object.values(err.errors).map(error => {
+                // Create friendly messages based on validation type
+                if (error.kind === 'minlength') {
+                    return `The ${error.path} must be at least ${error.properties.minlength} characters.`;
+                } else if (error.kind === 'maxlength') {
+                    return `The ${error.path} cannot exceed ${error.properties.maxlength} characters.`;
+                } else if (error.kind === 'required') {
+                    return `The ${error.path} is required.`;
+                } else {
+                    return `Invalid value for ${error.path}. Please review your input.`;
+                }
+            });
+    
+            // Join all error messages for fields, if multiple exist
+            msg = fieldErrors.join(' ');
             req.flash('error', msg);
             return res.status(400).redirect('/bisum/register');
-    
         } else if (err.name === 'TokenExpiredError') {
             msg = `Your session has expired. Please refresh the page and try again.`;
             req.flash('error', msg);
