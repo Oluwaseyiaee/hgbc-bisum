@@ -28,7 +28,6 @@ router.route("/admin/UrO89GZnBXTuVToc/tomS6CdYNFXuIJhXCKdoOCbYSA=/table/:admin")
     res.render("table",{photizoUser})
 })
 router.route("/register").post(upload.single('file'),async(req,res)=>{
-    console.log(req.body)
     if(!req.file){
      req.flash('error','Please upload your receipt image.');
      return res.status(400).redirect('/bisum/register');
@@ -84,37 +83,44 @@ router.route("/register").post(upload.single('file'),async(req,res)=>{
             return res.redirect('/bisum');
         }
      }
-    }catch(err){
-        process.env.NODE_ENV==='development' && console.log(err);
-        if(err.name==='CastError'){
-            const msg=`Invalid value for ${err.path} : ${err.value}`;
-            req.flash('error',msg);
+    }catch (err) {
+        if (process.env.NODE_ENV === 'development') {
+            console.log(err);
+        }
+        let msg;
+        if (err.name === 'CastError') {
+            msg = `The provided value for "${err.path}" is invalid. Please double-check your input.`;
+            req.flash('error', msg);
+            return res.status(400).redirect('/bisum/register');
+    
+        } else if (err.code === 11000) {
+            const field = err.keyValue.name || err.keyValue.email;
+            msg = `A user with this ${field ? `value for "${field}"` : 'information'} already exists. Please use a different one.`;
+            req.flash('error', msg);
+            return res.status(400).redirect('/bisum/register');
+    
+        } else if (err.name === 'ValidationError') {
+            msg = `Validation error: ${err.message.replace('Validation failed:', '').trim()}`;
+            req.flash('error', msg);
+            return res.status(400).redirect('/bisum/register');
+    
+        } else if (err.name === 'TokenExpiredError') {
+            msg = `Your session has expired. Please refresh the page and try again.`;
+            req.flash('error', msg);
+            return res.status(400).redirect('/bisum/register');
+    
+        } else if (err.name === 'JsonWebTokenError') {
+            msg = `There was an issue with your session. Please try logging in again.`;
+            req.flash('error', msg);
+            return res.status(400).redirect('/bisum/register');
+    
+        } else {
+            msg = err.message || 'Something went wrong. Please try again later.';
+            req.flash('error', msg);
             return res.status(400).redirect('/bisum/register');
         }
-         else if(err.code===11000){
-            const msg=`The user with ${err.keyValue.name || err.keyValue.email } already exist.`;
-            req.flash('error',msg);
-            return res.status(400).redirect('/bisum/register');
-        }
-         else if(err.name==='ValidationError'){
-            const msg=err.message;
-            req.flash('error',msg);
-            return res.status(400).redirect('/bisum/register');
-        }       
-         else if(err.name==='TokenExpiredError'){
-            const msg=err.message;
-            req.flash('error',msg);
-            return res.status(400).redirect('/bisum/register');
-        }
-         else if(err.name==='JsonWebTokenError'){
-            const msg=err.message;
-            req.flash('error',msg);
-            return res.status(400).redirect('/bisum/register');
-        }else{
-         req.flash('error',err.message || 'something went wrong, pls try again later.');
-         return res.status(400).redirect('/bisum/register');
-         }
     }
+    
 })
 
 module.exports = router

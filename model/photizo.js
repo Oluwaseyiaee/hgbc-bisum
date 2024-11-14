@@ -19,7 +19,7 @@ const photizoSchema = new mongoose.Schema({
     required: [true, "Please select your age range."]
   },
   mobileNumber: {
-    type: Number,
+    type: String,
     required: [true, "Please enter your mobile number."],
     maxLength: 15,
     minLength: 11
