@@ -712,7 +712,10 @@ strong {
   .site-header p {
     font-size: 17px;
   }
-
+  .hero {
+    position: relative;
+    height: 70vh;
+  }
   .carousel-caption {
     z-index: 9;
     top: 0;
