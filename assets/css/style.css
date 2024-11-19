@@ -635,6 +635,10 @@ strong {
 }
 
 @media screen and (max-width: 1280px) {
+  .hero {
+    position: relative;
+    height: 50vh;
+  }
   .contact svg {
     bottom: 0;
     margin-bottom: 0;
