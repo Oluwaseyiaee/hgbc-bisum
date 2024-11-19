@@ -637,13 +637,20 @@ strong {
 @media screen and (max-width: 1280px) {
   .hero {
     position: relative;
-    height: 50vh;
+    height: 60vh;
   }
 
   .carousel-caption {
-    top: -15%;
+    z-index: 9;
+    top: 10%;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    width: 100%;
+    margin-right: 12px;
+    margin-left: 12px;
+    margin-bottom: 20px;
   }
-
   .carousel-caption h3 {
     font-size: 46px;
   }
@@ -651,6 +658,11 @@ strong {
   .carousel-caption p {
     font-size: 24px;
   }
+  .carousel-control-next,
+  .carousel-control-prev {
+    bottom: 20px;
+  }
+
   .contact svg {
     bottom: 0;
     margin-bottom: 0;
