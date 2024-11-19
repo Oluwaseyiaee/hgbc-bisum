@@ -581,8 +581,8 @@ strong {
 -----------------------------------------*/
 .site-footer {
   background: var(--primary-color);
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
 .site-footer .copyright-text {
