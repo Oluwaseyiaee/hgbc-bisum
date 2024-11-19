@@ -376,7 +376,7 @@ strong {
 -----------------------------------------*/
 .hero {
   position: relative;
-  height: calc(99vh - 133px);
+  height: 70vh;
 }
 
 .section-hero {
@@ -473,8 +473,8 @@ strong {
 
 .carousel-control-next-icon,
 .carousel-control-prev-icon {
-  width: 70px;
-  height: 70px;
+  width: 50px;
+  height: 50px;
 }
 
 /*---------------------------------------
@@ -514,8 +514,7 @@ strong {
 -----------------------------------------*/
 .site-header {
   background: var(--primary-color);
-  padding-top: 10px;
-  padding-bottom: 10px;
+  padding: 10px 0;
 }
 
 .site-header-icon {
@@ -523,7 +522,11 @@ strong {
 }
 
 .site-header .social-icon {
-  text-align: right;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 10px; /* Adjust space between icons */
 }
 
 /*---------------------------------------
@@ -682,9 +685,16 @@ strong {
     padding-bottom: 10px;
   }
 
+  .site-header .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .site-header .social-icon {
-    text-align: center;
-    margin-top: 10px;
+    justify-content: flex-end;
+  }
+  .site-header p {
+    font-size: 17px;
   }
 
   .carousel-caption {
