@@ -434,7 +434,7 @@ strong {
 
 .carousel-caption {
   z-index: 9;
-  top: 32%;
+  top: 0;
   bottom: 0;
   left: 0;
   text-align: left;
