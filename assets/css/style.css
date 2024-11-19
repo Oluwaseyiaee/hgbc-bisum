@@ -639,6 +639,18 @@ strong {
     position: relative;
     height: 50vh;
   }
+
+  .carousel-caption {
+    top: -15%;
+  }
+
+  .carousel-caption h3 {
+    font-size: 46px;
+  }
+
+  .carousel-caption p {
+    font-size: 24px;
+  }
   .contact svg {
     bottom: 0;
     margin-bottom: 0;
