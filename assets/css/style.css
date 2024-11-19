@@ -712,27 +712,6 @@ strong {
   .site-header p {
     font-size: 17px;
   }
-  .hero {
-    position: relative;
-    height: 70vh;
-  }
-  .carousel-caption {
-    z-index: 9;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    text-align: left;
-    width: 100%;
-    margin-right: 12px;
-    margin-left: 12px;
-  }
-  .carousel-caption h3 {
-    font-size: var(--h3-font-size);
-  }
-
-  .carousel-caption p {
-    font-size: var(--p-font-size);
-  }
 
   .about-thumb {
     padding: 30px;
@@ -790,6 +769,28 @@ strong {
 
   .site-header p {
     font-size: 14px;
+  }
+
+  .hero {
+    position: relative;
+    height: 70vh;
+  }
+  .carousel-caption {
+    z-index: 9;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    text-align: left;
+    width: 100%;
+    margin-right: 12px;
+    margin-left: 12px;
+  }
+  .carousel-caption h3 {
+    font-size: var(--h3-font-size);
+  }
+
+  .carousel-caption p {
+    font-size: var(--p-font-size);
   }
 
   .carousel-control-next,
