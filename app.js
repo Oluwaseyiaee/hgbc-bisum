@@ -24,17 +24,13 @@ app.use(express.urlencoded({ extended: false }));
 const conn = process.env.NODE_ENV === 'development' ? process.env.LOCAL_CONN : process.env.GLOBAL_CONN;
 // Set up session with a secret and options
 app.use(require("express-session")({
-  secret: 'n0bFEermYgBlOs23Njk/y98W6A/T2PdRsz+MNFj3DpVVKcpF7tTyHVgnFfKbA8uV31YJDRoknyIhGwTp3J/pjA==',
+  secret: 'n0bFEermYgBlOs23Njk/y98W6A/T2PdRsz+MNFj3DpVVKcpF7tTyHVgnFfKbA8uV',
   resave: false,
   saveUninitialized: false,
   store: MongoStore.create({ 
-    mongoUrl: conn, // Use the same MongoDB connection string
-    collectionName: 'sessions' // You can customize the collection name
-}),
-cookie: {
-    maxAge: 1000 * 60 * 60 * 12, // Session expiration (1 day here)
-    secure: process.env.NODE_ENV === 'production' // Use secure cookies in production
-}
+      mongoUrl: conn, // Use the same MongoDB connection string
+      collectionName: 'sessions' // You can customize the collection name
+  })
 }));
 
 // Flash messages setup
@@ -50,18 +46,24 @@ app.use(helmet()); // General security headers
 
 // Define allowed script sources for CSP
 const allowedScriptSources = [
-  "'self'",
-  'https://code.jquery.com/',
-  'https://unpkg.com/aos@2.3.1/dist/aos.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/',
-  "'unsafe-inline'"
+  "'self'", // Allow scripts from the same origin
+  'https://code.jquery.com/', // Add jQuery CDN to the list
+  'https://unpkg.com/aos@2.3.1/dist/aos.js', // AOS library
+  'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/', // Slick carousel
+  'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+  "'unsafe-inline'" // Allow inline scripts (though this could be a security risk)
 ];
+
 const cspConfig = {
   directives: {
     defaultSrc: ["'self'"],
+    connectSrc: ["'self'", 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/', 'https://unpkg.com/aos@2.3.1/dist/aos.js','https://fonts.googleapis.com','https://code.jquery.com/'],
+    imgSrc: ["'self'",'data:', 'blob:'],
+    scriptSrcElem: allowedScriptSources, // Updated script-src to include jQuery
     mediaSrc: ["'self'", 'https://www.youtube.com/'],
-    imgSrc: ["'self'", 'data:', 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/'],
-    scriptSrc: allowedScriptSources
+    frameSrc: ["'self'", 'https://www.google.com/'],
+    objectSrc: ["'none'"],
+    upgradeInsecureRequests: [],
   }
 };
 app.use(helmet.contentSecurityPolicy(cspConfig));

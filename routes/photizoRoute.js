@@ -5,7 +5,7 @@ const express=require("express"),
       const memoryStorage = multer.memoryStorage();
 const upload = multer({
     storage: memoryStorage,
-    limits: { fileSize: 1 * 1024 * 1024 }, // 15MB limit, adjust as necessary
+    limits: { fileSize: 1 * 1024 * 1024 }, // 1MB limit, adjust as necessary
     fileFilter: (req, file, cb) => {
         // Accept images only
         if (!file.mimetype.startsWith('image/')) {
@@ -27,7 +27,7 @@ router.route("/admin/UrO89GZnBXTuVToc/tomS6CdYNFXuIJhXCKdoOCbYSA=/table/:admin")
     const photizoUser= await Photizo.find();
     res.render("table",{photizoUser})
 })
-router.route("/register").post(upload.single('file'),async(req,res)=>{
+router.route("/register").post(upload.single('file'),async(req,res,next)=>{
     if(!req.file){
      req.flash('error','Please upload your receipt image.');
      return res.status(400).redirect('/bisum/register');
@@ -87,53 +87,63 @@ router.route("/register").post(upload.single('file'),async(req,res)=>{
         if (process.env.NODE_ENV === 'development') {
             console.log(err);
         }
-        let msg;
-        if (err.name === 'CastError') {
-            msg = `The provided value for "${err.path}" is invalid. Please double-check your input.`;
-            req.flash('error', msg);
+        next(err); // Pass errors to centralized error handler
+    }
+})
+
+// Centralized error handling middleware
+router.use((err, req, res,next) => {
+    let msg;
+    if (err instanceof multer.MulterError) {
+        // Handle Multer-specific errors
+        if (err.code === 'LIMIT_FILE_SIZE') {
+            req.flash('error', 'The uploaded file exceeds the 1MB size limit.');
             return res.status(400).redirect('/bisum/register');
-    
-        } else if (err.code === 11000) {
-            const field = err.keyValue.name || err.keyValue.email;
-            msg = `A user with this ${field ? `value for "${field}"` : 'information'} already exists. Please use a different one.`;
-            req.flash('error', msg);
-            return res.status(400).redirect('/bisum/register');
-    
-        } else if (err.name === 'ValidationError') {
-            const fieldErrors = Object.values(err.errors).map(error => {
-                // Create friendly messages based on validation type
-                if (error.kind === 'minlength') {
-                    return `The ${error.path} must be at least ${error.properties.minlength} characters.`;
-                } else if (error.kind === 'maxlength') {
-                    return `The ${error.path} cannot exceed ${error.properties.maxlength} characters.`;
-                } else if (error.kind === 'required') {
-                    return `The ${error.path} is required.`;
-                } else {
-                    return `Invalid value for ${error.path}. Please review your input.`;
-                }
-            });
-    
-            // Join all error messages for fields, if multiple exist
-            msg = fieldErrors.join(' ');
-            req.flash('error', msg);
-            return res.status(400).redirect('/bisum/register');
-        } else if (err.name === 'TokenExpiredError') {
-            msg = `Your session has expired. Please refresh the page and try again.`;
-            req.flash('error', msg);
-            return res.status(400).redirect('/bisum/register');
-    
-        } else if (err.name === 'JsonWebTokenError') {
-            msg = `There was an issue with your session. Please try logging in again.`;
-            req.flash('error', msg);
-            return res.status(400).redirect('/bisum/register');
-    
         } else {
-            msg = err.message || 'Something went wrong. Please try again later.';
-            req.flash('error', msg);
+            req.flash('error', `File upload error: ${err.message}`);
             return res.status(400).redirect('/bisum/register');
         }
+    }else if (err.name === 'CastError') {
+        msg = `The provided value for "${err.path}" is invalid. Please double-check your input.`;
+        req.flash('error', msg);
+        return res.status(400).redirect('/bisum/register');
+
+    } else if (err.code === 11000) {
+        const field = err.keyValue.name || err.keyValue.email;
+        msg = `A user with this ${field ? `value for "${field}"` : 'information'} already exists. Please use a different one.`;
+        req.flash('error', msg);
+        return res.status(400).redirect('/bisum/register');
+    } else if (err.name === 'ValidationError') {
+        const fieldErrors = Object.values(err.errors).map(error => {
+            // Create friendly messages based on validation type
+            if (error.kind === 'minlength') {
+                return `The ${error.path} must be at least ${error.properties.minlength} characters.`;
+            } else if (error.kind === 'maxlength') {
+                return `The ${error.path} cannot exceed ${error.properties.maxlength} characters.`;
+            } else if (error.kind === 'required') {
+                return `The ${error.path} is required.`;
+            } else {
+                return `Invalid value for ${error.path}. Please review your input.`;
+            }
+        });
+        // Join all error messages for fields, if multiple exist
+        msg = fieldErrors.join(' ');
+        req.flash('error', msg);
+        return res.status(400).redirect('/bisum/register');
+    } else if (err.name === 'TokenExpiredError') {
+        msg = `Your session has expired. Please refresh the page and try again.`;
+        req.flash('error', msg);
+        return res.status(400).redirect('/bisum/register');
+
+    } else if (err.name === 'JsonWebTokenError') {
+        msg = `There was an issue with your session. Please try logging in again.`;
+        req.flash('error', msg);
+        return res.status(400).redirect('/bisum/register');
+    } else {
+        msg = err.message || 'Something went wrong. Please try again later.';
+        req.flash('error', msg);
+        return res.status(500).redirect('/bisum/register');
     }
-    
-})
+});
 
 module.exports = router

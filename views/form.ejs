@@ -202,11 +202,10 @@
             <div class="my-container top-layer">
                 <% if (error && error.length > 0) { %>
                     <div id="error-alert" class="alert alert-error" role="alert">
-                        <%= error %>
+                        <%= error[0] %>
                     </div>
                     <script>
                         const errorAlert = document.getElementById('error-alert');
-                
                         // Ensure errorAlert exists before setting timeout
                         if (errorAlert) {
                             setTimeout(() => {
@@ -216,11 +215,10 @@
                     </script>
                 <% } else if (success && success.length > 0) { %>
                     <div id="success-alert" class="alert alert-success" role="alert">
-                        <%= success %>
+                        <%= success[0] %>
                     </div>
                     <script>
                         const successAlert = document.getElementById('success-alert');
-                
                         // Ensure successAlert exists before setting timeout
                         if (successAlert) {
                             setTimeout(() => {
@@ -239,13 +237,13 @@
                         if (success_alert_alert) {
                             setTimeout(() => {
                                 success_alert_alert.style.display = 'none';
-                            }, 10000); // 30 seconds in milliseconds
+                            }, 5000); // 30 seconds in milliseconds
                         }
                     </script>
                 <% } %>
             </div>
             <h4 class="text-primary">REGISTER FORM</h4>
-            <form method="post" action="/bisum/register" enctype="multipart/form-data">
+            <form id="registerForm" method="post" action="/bisum/register" enctype="multipart/form-data">
                 <!-- Name Fields -->
                 <div class="row g-3 mb-3">
                     <div class="col">
@@ -342,7 +340,7 @@
                     <input type="file" accept="/images*" name="file" class="form-control" id="file-upload" required>
                 </div>
 
-                <button type="submit" class="register-btn">Register</button>
+                <button type="submit" id="submitButton" class="register-btn">Register</button>
             </form>
         </div>
     </div>
@@ -357,21 +355,19 @@
                 otherSourceInput.value = ""; // Clear the input
             }
         });
-/*         document.getElementById("previewImage").style.display="none";
-        document.getElementById("file-upload").addEventListener("change", function(e) {
-        const reader = new FileReader();
-        reader.readAsDataURL(e.target.files[0]);  // Read the first selected file
-        
-        reader.onload = function() {
-            const base64String = reader.result;
-            document.getElementById("previewImage").src = base64String;  // Set image src
-            document.getElementById("previewImage").style.display="block"
-        };
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("registerForm");
+            const button = document.getElementById("submitButton");
 
-        reader.onerror = function(error) {
-            console.log(error);
-        };
-    }); */
+            // Add event listener for the form submission
+            form.addEventListener("submit", function (event) {
+                // Disable the button
+                button.disabled = true;
+                button.style.background = 'gray';
+                button.innerText = "Submitting...";
+            });
+        });
+
     </script>
         <!-- JS -->
     <!-- jQuery Library -->
@@ -386,8 +382,8 @@
 
     <!-- Plugin Options and Custom Scripts -->
     <script src="assets/js/magnific-popup-options.js"></script>
-    <script src="assets/js/click-scroll.js"></script>
-    <script src="assets/js/custom.js"></script>
+<!--     <script src="assets/js/click-scroll.js"></script>
+ -->    <script src="assets/js/custom.js"></script>
 </body>
 
 </html>

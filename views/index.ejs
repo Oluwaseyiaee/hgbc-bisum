@@ -66,12 +66,32 @@
         text-align: center;
         width: 100%;
       }
+      .icon-circle {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 50px;
+            /* adjust size as needed */
+            height: 50px;
+            border-radius: 50%;
+            background-color: #f26522;
+            /* Orange background */
+            color: white;
+            /* Icon color */
+            margin-right: 8px;
+            /* Space between icon and text */
+        }
+
+        .icon-circle i {
+            font-size: 18px;
+            /* Adjust icon size as needed */
+        }
     </style>
     <!-- flash error and success -->
     <div class="my-container top-layer">
       <% if (error && error.length > 0) { %>
       <div id="error-alert" class="alert alert-error" role="alert">
-        <%= error %>
+        <%= error[0] %>
       </div>
       <script>
         const errorAlert = document.getElementById("error-alert");
@@ -85,7 +105,7 @@
       </script>
       <% } else if (success && success.length > 0) { %>
       <div id="success-alert" class="alert alert-success" role="alert">
-        <%= success %>
+        <%= success[0] %>
       </div>
       <script>
         const successAlert = document.getElementById("success-alert");
@@ -102,276 +122,785 @@
     <!-- Nav and showcase -->
 
     <!-- Navbar Start-->
-    <nav class="navbar navbar-expand-lg bg-white shadow-lg">
-      <div class="container">
-        <a href="/bisum" class="navbar-brand">
-          <img src="assets/img/BISUM logo.png" class="logo-img" />
-        </a>
+      <nav class="navbar navbar-expand-lg bg-white shadow-lg">
+        <div class="container">
+            <a href="/" class="navbar-brand">
+                <img src="assets/img/BISUM logo.png" class="logo-img" />
+            </a>
 
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNav"
-          aria-controls="navbarNav"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="/bisum/register">
-                            About
-                        </a>
+                        <a class="nav-link click-scroll d-none" href="#section_1"> Home </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link click-scroll" href="#section_3">
-                            Speakers
-                        </a>
+                        <a class="nav-link click-scroll" href="#section_2"> About </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_3"> Speakers </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link click-scroll" href="#section_4">
-                            Bisum Team
+                            BISUM Team
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link click-scroll" href="#section_5">
+                            Contact Us
                         </a>
                     </li>
                 </ul>
             </div>
         </div>
-    </nav>
+      </nav>
     <!-- Navbar End-->
 
     <!-- Hero Start-->
-    <section class="hero">
-      <div class="container-fluid h-100">
-        <div class="row h-100">
-          <div
-            id="carouselExampleCaptions"
-            class="carousel carousel-fade hero-carousel slide"
-            data-bs-ride="carousel"
-          >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <div class="container position-relative h-100">
-                  <div
-                    class="carousel-caption d-flex flex-column justify-content-center"
-                  >
-                    <h3 style="color: #fe6003">
-                      Business and Investment Summit
-                    </h3>
-                    <p style="color: #fff">
-                      JOin us at BISUM, a premier annual event at Higher Ground
-                      Baptist Church!
-                    </p>
-                    <p style="color: #fff">
-                      BISUM '24 presents an invaluable opportunityto connect
-                      with successful entrepreneurs, as well as discover
-                      innovative strategies and practical insights to attract
-                      wealth.
-                    </p>
-                    <div class="d-flex align-items-center mt-4">
-                      <a class="custom-btn btn custom-link" href="/bisum/register"
-                        >Register Now</a
-                      >
+    <section class="hero" id="section_1">
+        <div class="container-fluid h-100">
+            <div class="row h-100">
+                <div id="carouselExampleCaptions" class="carousel carousel-fade hero-carousel slide"
+                    data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="container position-relative h-100">
+                                <div class="carousel-caption d-flex flex-column justify-content-center">
+                                    <h3 style="color: #fe6003">
+                                        Business and Investment Summit
+                                    </h3>
+                                    <p style="color: #fff">
+                                        JOin us at BISUM, a premier annual event at Higher Ground
+                                        Baptist Church!
+                                    </p>
+                                    <p style="color: #fff">
+                                        BISUM '24 presents an invaluable opportunityto connect
+                                        with successful entrepreneurs, as well as discover
+                                        innovative strategies and practical insights to attract
+                                        wealth.
+                                    </p>
+                                    <div class="d-flex align-items-center mt-4">
+                                        <a class="custom-btn btn custom-link"
+                                            href="https://hgbc-bisum.onrender.com/bisum/register">Register Now</a>
 
-                      <!-- <a
-                                    class="popup-youtube custom-icon d-flex ms-4"
-                                    href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y"
-                                  > 
-                                    <i
-                                      class="fa-solid fa-play play-icon d-flex m-auto text-white"
-                                    ></i>
-                                  </a> -->
+                                        <!-- <a class="popup-youtube custom-icon d-flex ms-4"
+                                            href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y">
+                                            <i class="fa-solid fa-play play-icon d-flex m-auto text-white"></i>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-image-wrap">
+                                <img src="assets/img/slide/Showcase-3.jpg" class="img-fluid carousel-image"
+                                    alt="" />
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="container position-relative h-100">
+                                <div class="carousel-caption d-flex flex-column justify-content-center">
+                                    <h3 style="color: #fe6003">
+                                        Business and Investment Summit
+                                    </h3>
+                                    <p style="color: #fff">
+                                        JOin us at BISUM, a premier annual event at Higher Ground
+                                        Baptist Church!
+                                    </p>
+                                    <p style="color: #fff">
+                                        BISUM '24 presents an invaluable opportunityto connect
+                                        with successful entrepreneurs, as well as discover
+                                        innovative strategies and practical insights to attract
+                                        wealth.
+                                    </p>
+                                    <div class="d-flex align-items-center mt-4">
+                                        <a class="custom-btn btn custom-link"
+                                            href="https://hgbc-bisum.onrender.com/bisum/register">Register Now</a>
+
+                                        <!-- <a class="popup-youtube custom-icon d-flex ms-4"
+                                            href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y">
+                                            <i class="fa-solid fa-play play-icon d-flex m-auto text-white"></i>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-image-wrap">
+                                <img src="assets/img/slide/Showcase-2.jpg" class="img-fluid carousel-image"
+                                    alt="" />
+                            </div>
+                        </div>
+
+                        <div class="carousel-item">
+                            <div class="container position-relative h-100">
+                                <div class="carousel-caption d-flex flex-column justify-content-center">
+                                    <h3 style="color: #fe6003">
+                                        Business and Investment Summit
+                                    </h3>
+                                    <p style="color: #fff">
+                                        JOin us at BISUM, a premier annual event at Higher Ground
+                                        Baptist Church!
+                                    </p>
+                                    <p style="color: #fff">
+                                        BISUM '24 presents an invaluable opportunityto connect
+                                        with successful entrepreneurs, as well as discover
+                                        innovative strategies and practical insights to attract
+                                        wealth.
+                                    </p>
+                                    <div class="d-flex align-items-center mt-4">
+                                        <a class="custom-btn btn custom-link"
+                                            href="https://hgbc-bisum.onrender.com/bisum/register">Register Now</a>
+
+                                        <!-- <a class="popup-youtube custom-icon d-flex ms-4"
+                                            href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y">
+                                            <i class="fa-solid fa-play play-icon d-flex m-auto text-white"></i>
+                                        </a> -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="carousel-image-wrap">
+                                <img src="assets/img/slide/Showcase-1.jpg" class="img-fluid carousel-image"
+                                    alt="" />
+                            </div>
+                        </div>
+
+                        <button class="carousel-control-prev" type="button"
+                            data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+
+                        <button class="carousel-control-next" type="button"
+                            data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                  </div>
                 </div>
-
-                <div class="carousel-image-wrap">
-                  <img
-                    src="assets/img/slide/Showcase-3.jpg"
-                    class="img-fluid carousel-image"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="container position-relative h-100">
-                  <div
-                    class="carousel-caption d-flex flex-column justify-content-center"
-                  >
-                    <h3 style="color: #fe6003">
-                      Business and Investment Summit
-                    </h3>
-                    <p style="color: #fff">
-                      JOin us at BISUM, a premier annual event at Higher Ground
-                      Baptist Church!
-                    </p>
-                    <p style="color: #fff">
-                      BISUM '24 presents an invaluable opportunityto connect
-                      with successful entrepreneurs, as well as discover
-                      innovative strategies and practical insights to attract
-                      wealth.
-                    </p>
-                    <div class="d-flex align-items-center mt-4">
-                      <a class="custom-btn btn custom-link" href="/bisum/register"
-                        >Register Now</a
-                      >
-
-                      <!-- <a
-                                    class="popup-youtube custom-icon d-flex ms-4"
-                                    href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y"
-                                  > 
-                                    <i
-                                      class="fa-solid fa-play play-icon d-flex m-auto text-white"
-                                    ></i>
-                                  </a>-->
-                    </div>
-                  </div>
-                </div>
-
-                <div class="carousel-image-wrap">
-                  <img
-                    src="assets/img/slide/Showcase-2.jpg"
-                    class="img-fluid carousel-image"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <div class="carousel-item">
-                <div class="container position-relative h-100">
-                  <div
-                    class="carousel-caption d-flex flex-column justify-content-center"
-                  >
-                    <h3 style="color: #fe6003">
-                      Business and Investment Summit
-                    </h3>
-                    <p style="color: #fff">
-                      JOin us at BISUM, a premier annual event at Higher Ground
-                      Baptist Church!
-                    </p>
-                    <p style="color: #fff">
-                      BISUM '24 presents an invaluable opportunityto connect
-                      with successful entrepreneurs, as well as discover
-                      innovative strategies and practical insights to attract
-                      wealth.
-                    </p>
-                    <div class="d-flex align-items-center mt-4">
-                      <a class="custom-btn btn custom-link" href="/bisum/register"
-                        >Register Now</a
-                      >
-
-                      <!-- <a
-                        class="popup-youtube custom-icon d-flex ms-4"
-                        href="https://www.youtube.com/watch?v=AYaHuZ4BB6Y"
-                      > 
-                        <i
-                          class="fa-solid fa-play play-icon d-flex m-auto text-white"
-                        ></i>
-                      </a>-->
-                    </div>
-                  </div>
-                </div>
-
-                <div class="carousel-image-wrap">
-                  <img
-                    src="assets/img/slide/Showcase-1.jpg"
-                    class="img-fluid carousel-image"
-                    alt=""
-                  />
-                </div>
-              </div>
-
-              <button
-                class="carousel-control-prev"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="prev"
-              >
-                <span
-                  class="carousel-control-prev-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Previous</span>
-              </button>
-
-              <button
-                class="carousel-control-next"
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide="next"
-              >
-                <span
-                  class="carousel-control-next-icon"
-                  aria-hidden="true"
-                ></span>
-                <span class="visually-hidden">Next</span>
-              </button>
             </div>
-          </div>
         </div>
-      </div>
     </section>
+    <!-- Hero End-->
 
-    <!-- About Start-->
-    <!-- <section class="about section-padding" id="#section_1">
+    <!-- About Area Start-->
+    <section class="about section-padding" id="section_2">
         <div class="container">
             <div class="row">
-
                 <div class="col-lg-6 col-12 mb-5 mb-lg-0">
-                    <div class="about-image-wrap h-100">
-                        <img src="assets/img/slide/Showcase-1.jpg" class="img-fluid about-image" alt="">
 
-                        <div class="about-image-info">
-                            <h4 class="text-white">William Smith, CEO</h4>
-
-                            <p class="text-white mb-0">You can freely use Waso Strategy for your website project. Thank
-                                you for visiting Tooplate.</p>
-                        </div>
+                    <div class="mb-3 me-0 me-sm-3">
+                        <img src="assets/img/about-bisum-2.jpg" class="img-fluid about-image" alt="Image 2">
                     </div>
+                    <div class="d-none d-md-flex">
+                        <img src="assets/img/about-bisum.jpg" class="img-fluid about-image" alt="Image 1"
+                            style="max-height: 600px;">
+                    </div>
+
                 </div>
+
+
 
                 <div class="col-lg-6 col-12 d-flex flex-column">
                     <div class="about-thumb bg-white shadow-lg">
 
                         <div class="about-info">
-                            <small class="small-title">About <strong class="text-warning">02/05</strong></small>
 
-                            <h2 class="mb-3">Consulting Agency</h2>
+                            <h4 class="mb-3">Business and Investment Summit</h4>
 
-                            <h5 class="mb-3">Helping small businesses since 2001</h5>
+                            <p>Business and Investment Summit(BISUM) is a transformative conference hosted by <a
+                                    href="https://hgbcinfluencers.org/" target="_blank" class="text-primary"> Higher
+                                    Ground Baptist Church.</a> It is a platform designed to empower minds, ignite
+                                creativity,
+                                and equip participants with the tools to excel in business and investments. This
+                                summit
+                                brings together industry experts, successful entrepreneurs, and visionary leaders to
+                                share actionable insights, proven strategies, and innovative ideas that help people
+                                maximize their potential and navigate the ever-evolving financial landscape. BISUM
+                                has
+                                successfully produced numerous entrepreneurs and leaders who excel in their
+                                respective
+                                fields.
 
-                            <p>Waso Strategy is a Bootstrap 5 HTML template for your business. You may use this template
-                                for any purpose. You may not redistribute the template ZIP file on any other website.
                             </p>
 
-                            <p>You may support a little PayPal donation to Tooplate by visiting our <a
-                                    href="https://www.tooplate.com/contact">contact page</a>. Thank you.</p>
+                            <p>BISUM is a great opportunity for aspiring entrepreneurs, seasoned business owners,
+                                and
+                                individuals seeking to enhance their financial literacy. It features engaging
+                                workshops,
+                                interactive sessions, and networking opportunities, providing the knowledge and
+                                connections needed to make informed decisions and turn ideas into reality.
+                            </p>
+
+                            <h5 class="mb-3">Wealth Magnet</h5>
+                            <p>This year’s Business and Investment Summit (BISUM) is your golden opportunity to
+                                transform your financial future under the powerful theme, <span
+                                    class="text-bold">Wealth
+                                    Magnet</span>. Discover how
+                                to attract wealth, create lasting value, and position yourself for success in an
+                                ever-changing world. Through dynamic teachings, real-world strategies, and
+                                inspirational
+                                stories from seasoned experts, you’ll uncover the principles that set thriving
+                                entrepreneurs and investors apart. Don’t miss this life-changing event at Higher
+                                Ground
+                                Baptist Church—where knowledge meets action, and dreams turn into reality. Your
+                                journey
+                                to financial freedom and creativity begins here!
+                            </p>
+                            <a class="custom-btn btn custom-link"
+                                href="https://hgbc-bisum.onrender.com/bisum/register">Register Now</a>
+
                         </div>
                     </div>
 
-                    <div class="row h-100">
-                        <div class="col-lg-6 col-6">
-                            <div class="about-thumb d-flex flex-column justify-content-center bg-danger mb-lg-0 h-100">
+                </div>
 
-                                <div class="about-info">
-                                    <h5 class="text-white mb-4">We're growing business dolor</h5>
+            </div>
+        </div>
+    </section>
+    <!-- About Area End-->
 
-                                    <a class="custom-btn btn custom-bg-primary" href="#section_3">Join us</a>
+    <!-- Speaker Area Start -->
+    <section class="projects section-padding" id="section_3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+                    <h2>Meet Our Speakers</h2>
+
+                </div>
+
+                <!-- Speaker 1 -->
+                <!-- Speaker 4 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-1.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Samson Ayangoke</h3>
+                                <span>Lead Pastor, Higher Ground Baptist Church, Ogbomoso.</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/samsonayangoke" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/samsonayangoke_" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/samsonayangoke?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2moKjTtPRHWPDMTLUgdp3Q%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/samsonayangoke/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="col-lg-6 col-6">
-                            <div class="about-thumb d-flex flex-column justify-content-center bg-warning mb-lg-0 h-100">
 
-                                <div class="about-info">
-                                    <h5 class="text-white mb-4">How did you about us?</h5>
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-1.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Taiwo Opajobi</h3>
+                                <span>Lead Pastor, University Baptist Church, Ogbomoso.</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/Taiwo.Opajobi" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/taiwo-opajobi-8a43b526?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BU%2BL21b8zTUG17OU2BvX1FQ%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/taiwo_opajobi_/" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                    <p class="text-white mb-0">Lorem ipsum dolor sit consectetur</p>
+                <!-- Speaker 2 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-2.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Dayo Malomo</h3>
+                                <span>Chief Executive Officer of KwolityGroup Real Estate and Properties.
+                                </span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://www.instagram.com/kwolitygroup?igsh=MXMxbXoycml2ZXhtdg=="
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-3.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Adedoyin Adeyinka</h3>
+                                <span>Regional Supervisor for South-Western States</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <!-- <div class="share-links">
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Speaker 5 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-5.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Simire Omotoyosi Tijesuni </h3>
+                                <span>CEO and Chairman of WùRÀFÀDÁKÀ.</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/teejaysuni" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://x.com/simiretj" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/tijesuni-simire-61a325196?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BlSp5UxaZTXuJiblyC%2F8d6g%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/simiretj/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 6 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-4.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Oluwatobi Elijah Ojua</h3>
+                                <span>Brand Consultant at littery World A2618 International</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/Oluwatobiojua/?_rdc=1&_rdr" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/oluwatobiojua" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/oluwatobiojua?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BiugyLUFtSbWvpxV8Wb6DJA%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/oluwatobiojua_obagangan/" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 7 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-7.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Mary Ikuomola</h3>
+                                <span>Founder of Marianah Enterprises</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/profile.php?id=100084219454581"
+                                        target="_blank" class="inner-link">
+                                        # <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/mary_ikuomola/p/C_6NAwXO2KM/" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 8 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/speakers/speaker-8.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Ayanfe Fakunle</h3>
+                                <span>Content strategist at Bybit.</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/fakunle.ayanfesamuel/?locale=fr_CA&_rdc=1&_rdr#"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/ayanfe?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3Bihzocj9ZTVmWNTHx0fTKyQ%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Speaker Area End -->
+
+    <!-- BISUM Team Area Start -->
+    <section class="projects section-padding" id="section_4">
+        <div class="container">
+            <div class="row g-4 mb-5">
+                <div class="col-lg-10 col-12 text-center mx-auto mb-5">
+                    <h2>BISUM Team</h2>
+                </div>
+            </div>
+            <div class="row speaker-slider g-4">
+                <!-- Speaker 1 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-1.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Pastor Samson Ayangoke</h3>
+                                <span>BISUM Team Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/samsonayangoke" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/samsonayangoke_" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/samsonayangoke?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3B2moKjTtPRHWPDMTLUgdp3Q%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/samsonayangoke/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 2 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-2.jpg" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Glory Omolewa Adepoju</h3>
+                                <span>Secretary</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/glory.omolewa.5" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/GloryOmolewa" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/omo_lewa05/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 3 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-3.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Gloria Dolapo Olayiwola</h3>
+                                <span>Asst. Secretary</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/dolapo.gloria/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 4 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-4.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Oluwatobi Elijah Ojua</h3>
+                                <span>Media & Publicity Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/Oluwatobiojua/?_rdc=1&_rdr" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/oluwatobiojua" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/oluwatobiojua?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BiugyLUFtSbWvpxV8Wb6DJA%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/oluwatobiojua_obagangan/" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 5 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-5.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Oluwatobi Deborah Ayodeji</h3>
+                                <span>Media & Publicity Co. Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/oluwatobi.deborah.92" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://twitter.com/debraatweets" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/ayodeji-deborah-40963b268?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BdpGA4qNVQhGRhw6ikoeqjQ%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/debraa_gram/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 6 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-6.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Esther Odede</h3>
+                                <span>Welfare Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/esther.o.odede" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/odede.esther/" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 7 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-7.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Testimony Adeniji</h3>
+                                <span>Welfare Co. Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://www.instagram.com/ade_nihun/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 8 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-8.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Esther Alawode</h3>
+                                <span>Finance</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <!-- <div class="share-links">
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="#" target="_blank" class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 9 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-9.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Emmanuel Fadeyi</h3>
+                                <span>Protocol Team Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://x.com/lovedby_Love_?t=Kin44JJW62A8bNpLxW_Few&s=09"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="https://www.linkedin.com/in/emmanuel-fadeyi-729385322?lipi=urn%3Ali%3Apage%3Ad_flagship3_profile_view_base_contact_details%3BL36hOFfxRHGFgpVdVNpKkA%3D%3D"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/emmafadeyi_realtor?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Speaker 10 -->
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="team__two-team-item">
+                        <img src="assets/img/team/team-10.png" alt="image">
+                        <div class="team__two-team-item-content">
+                            <div class="member-name">
+                                <h3 class="mt-3 mb-1">Abiola John Oluwaseyi</h3>
+                                <span>Registration Team Lead</span>
+                            </div>
+                            <div class="fas fa-share-alt share-link-wrapper">
+                                <div class="share-links">
+                                    <a href="https://web.facebook.com/profile.php?id=100085024642428"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-facebook-f"></i>
+                                    </a>
+                                    <a href="https://x.com/oluwaseyiae?t=Dc_9axJ96HlfjoeKfG_rNw&s=09"
+                                        target="_blank" class="inner-link">
+                                        <i class="fab fa-twitter"></i>
+                                    </a>
+                                    <a href="www.linkedin.com/in/abiola-john-oluwaseyi-b65336234" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-linkedin"></i>
+                                    </a>
+                                    <a href="https://www.instagram.com/oluwaseyiae/?hl=en" target="_blank"
+                                        class="inner-link">
+                                        <i class="fab fa-instagram"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -380,11 +909,110 @@
 
             </div>
         </div>
-    </section> -->
+        </div>
+    </section>
+    <!-- BISUM Team Area End -->
+
+    <!-- Contact us Area Start -->
+    <section class="projects section-padding" id="section_5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5" data-aos="fade-up" data-aos-duration="1500">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d956.7226045527757!2d4.264685797732026!3d8.164173505962271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x10370da637004d75%3A0xcba433a8c5a10ad5!2sHigher%20Ground%20Baptist%20Church!5e0!3m2!1sen!2sng!4v1708510731262!5m2!1sen!2sng"
+                        width="100%" height="450" style="border: 0" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <div class="col-md-7" data-aos="fade-up" data-aos-duration="1000">
+                    <div class="py-4">
+                        <div class="">
+                            <div class="text-center">
+                                <h3>Get in Touch</h3>
+                                <p>Don't hesitate to contact us</p>
+                                <h1 class="h3 font-weight-bold mb-2">
+                                    Higher Ground Baptist Church, Ogbomoso.
+                                </h1>
+                            </div>
+
+                            <div class="">
+                                <div class="just-content-start">
+                                    <span class="d-block mb-2">
+                                        <span class="icon-circle">
+                                            <i class="fas fa-map-marker-alt"></i>
+                                        </span>
+
+                                        Adekehin Close, Behind Alata Milk & Honey, Under G,
+                                        Ogbomoso, Oyo State.
+                                    </span>
+                                    <span class="d-block mb-2">
+                                        <span class="icon-circle">
+                                            <i class="fa-solid fa-globe"></i>
+                                        </span>
+
+                                        <a href="https://hgbcinfluencers.org/" target="_blank"
+                                            class="text-primary">www.hgbcinfluencers.org</a>
+                                    </span>
+
+                                    <span class="d-block mb-2">
+                                        <span class="icon-circle">
+                                            <i class="fas fa-envelope"></i>
+                                        </span>
+
+                                        hgbcpastordirect@gmail.com
+                                    </span>
+                                    <span class="d-block mb-2">
+                                        <span class="icon-circle">
+                                            <i class="fas fa-phone-alt"></i>
+                                        </span>
+                                        +234 853096745
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact us Area End -->
+
+    <!-- Footer Area Start -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row">
+                <div class="site-footer-wrap d-flex justify-content-center align-items-center">
+
+                    <ul class="social-icon mb-3 mb-md-0">
+                        <li>
+                            <a href="https://facebook.com/hgbcinfluencers" target="_blank"
+                                class="fab fa-facebook social-icon-link"></a>
+                        </li>
+                        <li>
+                            <a href="https://x.com/hgbcinfluencers" target="_blank"
+                                class="fab fa-twitter social-icon-link"></a>
+                        </li>
+                        <li>
+                            <a href="https://instagram.com/hgbcinfluencers" target="_blank"
+                                class="fab fa-instagram social-icon-link"></a>
+                        </li>
+                        <li>
+                            <a href="https://youtube.com/@hgbcinfluencers" target="_blank"
+                                class="fab fa-youtube social-icon-link"></a>
+                        </li>
+                    </ul>
+                    <p class="copyright-text mb-0 me-4 mx-md-5">
+                        Copyright © 2024 Higher Ground Baptist Church
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Area End -->
 
     <!-- JS -->
-    <!-- jQuery Library -->
-    <script src="assets/js/jquery.min.js"></script>
+    <!-- jQuery Library (Place this first for all jQuery plugins to work properly) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Bootstrap JavaScript -->
     <script src="assets/js/bootstrap.min.js"></script>
@@ -396,6 +1024,15 @@
     <!-- Plugin Options and Custom Scripts -->
     <script src="assets/js/magnific-popup-options.js"></script>
     <script src="assets/js/click-scroll.js"></script>
+
+    <!-- Add Slick Carousel JS (This should be loaded after jQuery) -->
+<!--     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js">
+    </script> -->
+    <script src="assets/js/slick-carosuel.js"></script>
+
+    <!-- Custom Scripts (Your personal project-related custom scripts) -->
     <script src="assets/js/custom.js"></script>
-  </body>
+
+</body>
+
 </html>
