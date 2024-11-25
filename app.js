@@ -50,7 +50,10 @@ const allowedScriptSources = [
   'https://code.jquery.com/', // Add jQuery CDN to the list
   'https://unpkg.com/aos@2.3.1/dist/aos.js', // AOS library
   'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/', // Slick carousel
+  'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js',
   'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js',
+  'https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js',
+  'https://cdn.jsdelivr.net/npm/slick-carousel/slick/slick.min.js',
   "'unsafe-inline'" // Allow inline scripts (though this could be a security risk)
 ];
 
@@ -58,7 +61,7 @@ const cspConfig = {
   directives: {
     defaultSrc: ["'self'"],
     connectSrc: ["'self'", 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/', 'https://unpkg.com/aos@2.3.1/dist/aos.js','https://fonts.googleapis.com','https://code.jquery.com/'],
-    imgSrc: ["'self'",'data:', 'blob:'],
+    imgSrc: ["'self'",'data:', 'blob:','https://cdn.jsdelivr.net/npm/slick-carousel/slick/ajax-loader.gif'],
     scriptSrcElem: allowedScriptSources, // Updated script-src to include jQuery
     mediaSrc: ["'self'", 'https://www.youtube.com/'],
     frameSrc: ["'self'", 'https://www.google.com/'],
